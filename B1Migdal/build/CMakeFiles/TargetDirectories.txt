@@ -1,0 +1,3 @@
+/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/exampleB1.dir
+/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/edit_cache.dir
+/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/rebuild_cache.dir

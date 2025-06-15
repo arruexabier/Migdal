@@ -1,0 +1,5 @@
+# Macro file for example B1
+
+/run/initialize
+
+/run/beamOn 100000
