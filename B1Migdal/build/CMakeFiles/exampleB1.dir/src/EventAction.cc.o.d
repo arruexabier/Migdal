@@ -552,4 +552,8 @@ CMakeFiles/exampleB1.dir/src/EventAction.cc.o: \
  /home/arruexabier/software/geant4/geant4-v11.3.2-install/include/Geant4/G4RunManagerKernel.hh \
  /home/arruexabier/software/geant4/geant4-v11.3.2-install/include/Geant4/rundefs.hh \
  /usr/include/c++/13/list /usr/include/c++/13/bits/stl_list.h \
- /usr/include/c++/13/bits/list.tcc
+ /usr/include/c++/13/bits/list.tcc \
+ /home/arruexabier/tfg/B1Migdal/include/PrimaryGeneratorAction.hh \
+ /home/arruexabier/software/geant4/geant4-v11.3.2-install/include/Geant4/G4VUserPrimaryGeneratorAction.hh \
+ /home/arruexabier/software/geant4/geant4-v11.3.2-install/include/Geant4/G4PhysicsOrderedFreeVector.hh \
+ /home/arruexabier/software/geant4/geant4-v11.3.2-install/include/Geant4/G4RandomDirection.hh

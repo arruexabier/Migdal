@@ -47,6 +47,9 @@ class Event:
         return np.any((self.cluster_list[:, 3] > 28) & (self.cluster_list[:, 3] < 35))
     def ArEnergy(self):
         return np.any((self.cluster_list[:, 3] > 1.2) & (self.cluster_list[:, 3] < 5.2))
+     
+     
+     
         
 
 #PROCESS DATA
@@ -78,14 +81,22 @@ else:
 
 
 spectrum = np.array([event.getEnergy() for event in all_events])
-
+mask1 = np.array([not event.hasEdge() for event in all_events])
+mask2 = np.array([event.getClusterNum() >= 2 for event in all_events])
+mask3 = np.array([event.XeEnergy() for event in all_events])
+#mask3 = np.array([event.ArEnergy() for event in all_events])
 
 #ADD EFFECT OF RESOLUTION:
 spectrum_resol=[]
-def energy_resolution(e, res_factor=0.01, norm_factor=2500):
+def energy_resolution(e, res_factor=0.3, norm_factor=5.9):  ##res_factor=0.01, norm_factor=2500):
     return res_factor * np.sqrt(e / norm_factor)
 
 spectrum_resol = np.random.normal(spectrum, energy_resolution(spectrum))
+spectrum_cut1 = spectrum_resol[mask1]
+spectrum_cut2 = spectrum_resol[mask1 & mask2]
+spectrum_cut3 = spectrum_resol[mask1 & mask2 & mask3]
+print(len(spectrum_resol),len(spectrum_cut1),len(spectrum_cut2),len(spectrum_cut3))
+
 
 
 # Filter events with exactly 2 clusters
@@ -104,27 +115,44 @@ cluster_distances = [
 
 # Plotting
 fig, axs = plt.subplots(1, 3, figsize=(12, 5))
-scale_factor = 7827/100000
-weights = np.ones_like(spectrum) * scale_factor
+migdal_branch_xe=8.23694e-07 #migdal xenon
+migdal_branch_xe=4.6e-6*0.28/2
+scale_factor = 1000*5.81*6*migdal_branch_xe*0.89*86400/500000     #Xenon
+migdal_branch_ar=8.23694e-07 #migdal argon
+#scale_factor = 1000*0.726*0.65*migdal_branch_ar*0.14*86400/100000  #Argon
+#scale_factor=1
+weights = np.ones_like(spectrum_resol) * scale_factor
+
+
+counts, bin_edges = np.histogram(spectrum_resol, bins=100, weights=weights)
+bin_widths = np.diff(bin_edges)
+total_integral = np.sum(counts * bin_widths)
+print("Total integral under histogram (Counts/day):", total_integral)
 
 # Left: Total energy spectrum
-axs[0].hist(spectrum_resol, bins=100,weights=weights ,histtype='step', color='black', linewidth=1.5)
+axs[0].hist(spectrum_resol, bins=120,weights=weights ,histtype='step', color='black', linewidth=1.5)
 axs[0].set_title("Total Energy Spectrum")
 axs[0].set_xlabel("Energy [keV]")
 axs[0].set_ylabel("Counts/day")
+#axs[0].set_yscale('log')
+#axs[0].set_ylim(0.1,1e12)
+#axs[0].set_ylim(0,50)
+axs[0].set_xlim(0,120)
+
 
 # Middle: Second cluster energy
 axs[1].hist(second_cluster_energies,bins=50, color='black', alpha=0.7)
 axs[1].set_title("Second Cluster Energy (2-cluster events)")
 axs[1].set_xlabel("Energy [keV]")
 axs[1].set_ylabel("Counts")
+axs[1].set_xlim(0,100)
 
 # Right: Distance between two clusters
 axs[2].hist(cluster_distances,bins=50, color='black', alpha=0.7)
 axs[2].set_title("Distance Between Two Clusters")
 axs[2].set_xlabel("Distance [cm]")
 axs[2].set_ylabel("Counts")
-axs[2].set_xlim(0,11)
+axs[2].set_xlim(0,20)
 axs[2].set_yscale("log")
 
 plt.tight_layout()

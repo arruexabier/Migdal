@@ -49,37 +49,44 @@ class Event:
         return np.any((self.cluster_list[:, 3] > 1.2) & (self.cluster_list[:, 3] < 5.2))
         
 
-# Dictionary to store all events
-event_list = {}
+#PROCESS DATA
+if not True:
+	# Dictionary to store all events
+	event_list = {}
 
-# Read HDF5 file
-with h5py.File("simulation_output.h5", "r") as file:
-    dataset = file["Processes"]
+	# Read HDF5 file
+	with h5py.File("simulation_output.h5", "r") as file:
+		dataset = file["Processes"]
 
-    for row in tqdm(dataset, desc="Processing events"):
-        event_id = int(row[0])
-        x, y, z = row[1], row[2], row[3]
-        energy = row[4]
+		for row in tqdm(dataset, desc="Processing events"):
+			event_id = int(row[0])
+			x, y, z = row[1], row[2], row[3]
+			energy = row[4]
 
-        if event_id not in event_list:
-            event_list[event_id] = Event(event_id)
+			if event_id not in event_list:
+				event_list[event_id] = Event(event_id)
 
-        event_list[event_id].add_cluster(x, y, z, energy)
+			event_list[event_id].add_cluster(x, y, z, energy)
 
+	####################################################################################           
+	print("DATA PROCESSED ----> CREATING HISTOGRAMS...")		
 
+	all_events = list(event_list.values())
+	np.save("background.npy", all_events)
+else:
+	all_events=np.load("background.npy",allow_pickle=True)
 
 
 
 ####################################################################################           
 print("DATA PROCESSED ----> CREATING HISTOGRAMS...")		
 
-all_events = list(event_list.values())
 
 spectrum = np.array([event.getEnergy() for event in all_events])
 mask1 = np.array([not event.hasEdge() for event in all_events])
 mask2 = np.array([event.getClusterNum() > 1 for event in all_events])
-mask3 = np.array([event.XeEnergy() for event in all_events])
-#mask3 = np.array([event.ArEnergy() for event in all_events])
+#mask3 = np.array([event.XeEnergy() for event in all_events])
+mask3 = np.array([event.ArEnergy() for event in all_events])
 
 
 #ADD EFFECT OF RESOLUTION:

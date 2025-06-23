@@ -154,6 +154,31 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     
     
     
+    
+    
+  if(1==1){
+  // CUBO NAKAMURA
+  G4ThreeVector pos = G4ThreeVector(0,0,0);
+
+  // CYLLINDER
+  auto solidShape = new G4Box("Shape1",  // its name
+    15*cm,15*cm,15*cm);  // its size
+
+  logicShape = new G4LogicalVolume(solidShape,  // its solid
+    detMaterial,                                        // its material
+    "Shape1");                                         // its name
+
+  new G4PVPlacement(nullptr,  // no rotation
+    pos,                     // at position
+    logicShape,              // its logical volume
+    "Shape1",                 // its name
+    logicWorld,                 // its mother  volume
+    false,                    // no boolean operation
+    0,                        // copy number
+    checkOverlaps);           // overlaps checking
+  
+  
+  }else{ 
   //
   // Shape 1: GAS CILINDER
   //
@@ -229,7 +254,8 @@ G4VPhysicalVolume* DetectorConstruction::Construct()
     false,                    // no boolean operation
     1,                        // copy number
     checkOverlaps);           // overlaps checking
-}
+  }
+  }
 
   //
   //always return the physical World
@@ -246,7 +272,7 @@ void DetectorConstruction::ConstructSDandField() {
     G4SDManager::GetSDMpointer()->AddNewDetector(sensDet);
     
     //SENSITIVE DETECTOR IS GAS CILINDER
-    logicShape->SetSensitiveDetector(sensDet);
+    logicShape->SetSensitiveDetector(sensDet);  //gas cilinder as detector
 }
 
 

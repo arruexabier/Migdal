@@ -24,12 +24,20 @@ class EventAction : public G4UserEventAction
 
     void BeginOfEventAction(const G4Event* event) override;
     void EndOfEventAction(const G4Event* event) override;
+    
+    G4double GetTotalProb() const { return totalProb; }
+    G4int GetEventCount() const { return eventCount; }
+    void AddProb(G4double p) { totalProb += p; eventCount++; }
+
 
 
   private:
     RunAction* fRunAction = nullptr;
     
     std::ofstream fFile;
+    
+    G4double totalProb = 0.;
+    G4int eventCount = 0;
 };
 
 }

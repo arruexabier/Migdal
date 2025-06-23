@@ -16,7 +16,13 @@ PrimaryGeneratorAction::PrimaryGeneratorAction()
     fParticleGun->SetParticlePosition(G4ThreeVector(0., 0., 0.)); //all migdal in center
     En=565*keV;
     m_e = 0.511 * MeV; 
-    defineXenon();
+    
+    usexenon=true;
+    if (usexenon){
+    	defineXenon();
+    }else{
+    	defineArgon();
+    }
 }
 
 PrimaryGeneratorAction::~PrimaryGeneratorAction()
@@ -38,11 +44,15 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 	G4double cosz=2*(G4UniformRand()-0.5);    //random between -1 and 1
 	E_R = E_Rmax/4 * ((1-root)*(1-root)+2*(1-cosz)*root);
 	G4double E_R_actual = E_Rmax/4 * ((1-root)*(1-root)+4);
-	if(G4UniformRand()<(E_R/E_R_actual)){break;}
+	if(G4UniformRand()<(E_R/E_R_actual)){
+		G4double qe=sqrt(2*511*511*E_R/m_nucleus);  //keV
+		prob=migdal_branch*qe*qe/0.511/0.511;
+		break;
+		}
     }
     
     
-    //MIGDAL ELECTRON
+    //1.MIGDAL ELECTRON
     G4ThreeVector electronDirection = G4RandomDirection(); // isotropic
     G4ParticleDefinition* electronDef = G4ParticleTable::GetParticleTable()->FindParticle("e-");
     fParticleGun->SetParticleDefinition(electronDef);
@@ -50,7 +60,7 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     fParticleGun->SetParticleMomentumDirection(electronDirection);
     fParticleGun->GeneratePrimaryVertex(anEvent);
     
-    // Generate Recoiling Xenon Nucleus
+    //2.Generate Recoiling Xenon Nucleus
     G4ThreeVector recoilDirection = G4RandomDirection();
     G4ParticleDefinition* ion = G4IonTable::GetIonTable()->GetIon(Z, A, 0.0); // ground state
     fParticleGun->SetParticleDefinition(ion);
@@ -58,12 +68,19 @@ void PrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     fParticleGun->SetParticleMomentumDirection(recoilDirection);
     fParticleGun->GeneratePrimaryVertex(anEvent);
     
-     // 4. Emit X-ray in opposite direction
+     //3.Emit X-ray in opposite direction
      G4ParticleDefinition* xray = G4ParticleTable::GetParticleTable()->FindParticle("gamma");
      fParticleGun->SetParticleDefinition(xray);
      fParticleGun->SetParticleMomentumDirection(G4RandomDirection());
      G4double X_ray_energy = (G4UniformRand() < kAlphaProb) ? K_alpha : K_beta; //x-ray energy
      fParticleGun->SetParticleEnergy(X_ray_energy);
+     fParticleGun->GeneratePrimaryVertex(anEvent);
+     
+     //4.De-excitation electron
+     G4ParticleDefinition* de_electron = G4ParticleTable::GetParticleTable()->FindParticle("e-");
+     fParticleGun->SetParticleDefinition(de_electron);
+     fParticleGun->SetParticleMomentumDirection(G4RandomDirection());
+     fParticleGun->SetParticleEnergy(binding_energy-X_ray_energy);
      fParticleGun->GeneratePrimaryVertex(anEvent);
     
     
@@ -105,6 +122,8 @@ void PrimaryGeneratorAction::defineXenon(){
   K_alpha = 29.46 * keV;
   K_beta  = 33.64 * keV;
   kAlphaProb=0.8;
+  fluor_yield=0.89;
+  migdal_branch=4.6e-6;
   Z=54;
   A=131;
   
@@ -362,6 +381,276 @@ void PrimaryGeneratorAction::defineXenon(){
 	ME_EnergyCDF->InsertValues(0.99670033, 66.944923*keV);
 	ME_EnergyCDF->InsertValues(1.00000000, 70.000000*keV);
   
-  
+}
+
+
+void PrimaryGeneratorAction::defineArgon(){
+  m_nucleus = 39.9 * 931.5 * MeV;          // Argon nucleus mass
+  m_n=939.565* MeV;
+  u=m_n*m_nucleus/(m_n+m_nucleus);
+  binding_energy = 3.2 * keV;        
+  K_alpha = 2.96 * keV;              
+  K_beta  = 3.19 * keV;              
+  kAlphaProb = 0.85;                 
+  fluor_yield = 0.12;  
+  migdal_branch=7.2e-5;              
+  Z = 18;                            
+  A = 40; 
+
+
+	ME_EnergyCDF = new G4PhysicsOrderedFreeVector();
+	ME_EnergyCDF->InsertValues(0.00003841, 0.001000*keV);
+	ME_EnergyCDF->InsertValues(0.00007772, 0.001046*keV);
+	ME_EnergyCDF->InsertValues(0.00011884, 0.001093*keV);
+	ME_EnergyCDF->InsertValues(0.00016187, 0.001143*keV);
+	ME_EnergyCDF->InsertValues(0.00020687, 0.001195*keV);
+	ME_EnergyCDF->InsertValues(0.00025396, 0.001250*keV);
+	ME_EnergyCDF->InsertValues(0.00030322, 0.001307*keV);
+	ME_EnergyCDF->InsertValues(0.00035476, 0.001367*keV);
+	ME_EnergyCDF->InsertValues(0.00040869, 0.001429*keV);
+	ME_EnergyCDF->InsertValues(0.00046510, 0.001494*keV);
+	ME_EnergyCDF->InsertValues(0.00052413, 0.001562*keV);
+	ME_EnergyCDF->InsertValues(0.00058589, 0.001634*keV);
+	ME_EnergyCDF->InsertValues(0.00065052, 0.001708*keV);
+	ME_EnergyCDF->InsertValues(0.00071813, 0.001786*keV);
+	ME_EnergyCDF->InsertValues(0.00078888, 0.001868*keV);
+	ME_EnergyCDF->InsertValues(0.00086290, 0.001953*keV);
+	ME_EnergyCDF->InsertValues(0.00094036, 0.002042*keV);
+	ME_EnergyCDF->InsertValues(0.00102141, 0.002135*keV);
+	ME_EnergyCDF->InsertValues(0.00110621, 0.002233*keV);
+	ME_EnergyCDF->InsertValues(0.00119496, 0.002335*keV);
+	ME_EnergyCDF->InsertValues(0.00128781, 0.002441*keV);
+	ME_EnergyCDF->InsertValues(0.00138498, 0.002553*keV);
+	ME_EnergyCDF->InsertValues(0.00148665, 0.002669*keV);
+	ME_EnergyCDF->InsertValues(0.00159305, 0.002791*keV);
+	ME_EnergyCDF->InsertValues(0.00170438, 0.002918*keV);
+	ME_EnergyCDF->InsertValues(0.00182087, 0.003051*keV);
+	ME_EnergyCDF->InsertValues(0.00194277, 0.003191*keV);
+	ME_EnergyCDF->InsertValues(0.00207033, 0.003336*keV);
+	ME_EnergyCDF->InsertValues(0.00220380, 0.003489*keV);
+	ME_EnergyCDF->InsertValues(0.00234347, 0.003648*keV);
+	ME_EnergyCDF->InsertValues(0.00248961, 0.003814*keV);
+	ME_EnergyCDF->InsertValues(0.00264252, 0.003988*keV);
+	ME_EnergyCDF->InsertValues(0.00280251, 0.004170*keV);
+	ME_EnergyCDF->InsertValues(0.00296991, 0.004361*keV);
+	ME_EnergyCDF->InsertValues(0.00314506, 0.004560*keV);
+	ME_EnergyCDF->InsertValues(0.00332831, 0.004768*keV);
+	ME_EnergyCDF->InsertValues(0.00352004, 0.004985*keV);
+	ME_EnergyCDF->InsertValues(0.00372062, 0.005213*keV);
+	ME_EnergyCDF->InsertValues(0.00393047, 0.005451*keV);
+	ME_EnergyCDF->InsertValues(0.00415000, 0.005699*keV);
+	ME_EnergyCDF->InsertValues(0.00437965, 0.005960*keV);
+	ME_EnergyCDF->InsertValues(0.00461988, 0.006232*keV);
+	ME_EnergyCDF->InsertValues(0.00487118, 0.006516*keV);
+	ME_EnergyCDF->InsertValues(0.00513403, 0.006813*keV);
+	ME_EnergyCDF->InsertValues(0.00540896, 0.007124*keV);
+	ME_EnergyCDF->InsertValues(0.00569650, 0.007449*keV);
+	ME_EnergyCDF->InsertValues(0.00599723, 0.007789*keV);
+	ME_EnergyCDF->InsertValues(0.00631172, 0.008145*keV);
+	ME_EnergyCDF->InsertValues(0.00664059, 0.008516*keV);
+	ME_EnergyCDF->InsertValues(0.00698447, 0.008905*keV);
+	ME_EnergyCDF->InsertValues(0.00734403, 0.009311*keV);
+	ME_EnergyCDF->InsertValues(0.00771997, 0.009736*keV);
+	ME_EnergyCDF->InsertValues(0.00811301, 0.010181*keV);
+	ME_EnergyCDF->InsertValues(0.00852390, 0.010645*keV);
+	ME_EnergyCDF->InsertValues(0.00895345, 0.011131*keV);
+	ME_EnergyCDF->InsertValues(0.00940245, 0.011639*keV);
+	ME_EnergyCDF->InsertValues(0.00987177, 0.012170*keV);
+	ME_EnergyCDF->InsertValues(0.01036229, 0.012726*keV);
+	ME_EnergyCDF->InsertValues(0.01087493, 0.013306*keV);
+	ME_EnergyCDF->InsertValues(0.01141065, 0.013914*keV);
+	ME_EnergyCDF->InsertValues(0.01197042, 0.014549*keV);
+	ME_EnergyCDF->InsertValues(0.01255529, 0.015213*keV);
+	ME_EnergyCDF->InsertValues(0.01316632, 0.015907*keV);
+	ME_EnergyCDF->InsertValues(0.01380462, 0.016633*keV);
+	ME_EnergyCDF->InsertValues(0.01447133, 0.017392*keV);
+	ME_EnergyCDF->InsertValues(0.01516766, 0.018186*keV);
+	ME_EnergyCDF->InsertValues(0.01589485, 0.019015*keV);
+	ME_EnergyCDF->InsertValues(0.01665419, 0.019883*keV);
+	ME_EnergyCDF->InsertValues(0.01744705, 0.020791*keV);
+	ME_EnergyCDF->InsertValues(0.01827485, 0.021739*keV);
+	ME_EnergyCDF->InsertValues(0.01913910, 0.022731*keV);
+	ME_EnergyCDF->InsertValues(0.02004138, 0.023769*keV);
+	ME_EnergyCDF->InsertValues(0.02098337, 0.024854*keV);
+	ME_EnergyCDF->InsertValues(0.02196682, 0.025988*keV);
+	ME_EnergyCDF->InsertValues(0.02299355, 0.027174*keV);
+	ME_EnergyCDF->InsertValues(0.02406543, 0.028414*keV);
+	ME_EnergyCDF->InsertValues(0.02518439, 0.029710*keV);
+	ME_EnergyCDF->InsertValues(0.02635238, 0.031066*keV);
+	ME_EnergyCDF->InsertValues(0.02757140, 0.032484*keV);
+	ME_EnergyCDF->InsertValues(0.02884343, 0.033967*keV);
+	ME_EnergyCDF->InsertValues(0.03017049, 0.035517*keV);
+	ME_EnergyCDF->InsertValues(0.03155470, 0.037137*keV);
+	ME_EnergyCDF->InsertValues(0.03299824, 0.038832*keV);
+	ME_EnergyCDF->InsertValues(0.03450343, 0.040604*keV);
+	ME_EnergyCDF->InsertValues(0.03607271, 0.042457*keV);
+	ME_EnergyCDF->InsertValues(0.03770873, 0.044395*keV);
+	ME_EnergyCDF->InsertValues(0.03941430, 0.046421*keV);
+	ME_EnergyCDF->InsertValues(0.04119238, 0.048539*keV);
+	ME_EnergyCDF->InsertValues(0.04304602, 0.050754*keV);
+	ME_EnergyCDF->InsertValues(0.04497833, 0.053071*keV);
+	ME_EnergyCDF->InsertValues(0.04699247, 0.055493*keV);
+	ME_EnergyCDF->InsertValues(0.04909160, 0.058025*keV);
+	ME_EnergyCDF->InsertValues(0.05127895, 0.060673*keV);
+	ME_EnergyCDF->InsertValues(0.05355786, 0.063442*keV);
+	ME_EnergyCDF->InsertValues(0.05593181, 0.066337*keV);
+	ME_EnergyCDF->InsertValues(0.05840439, 0.069364*keV);
+	ME_EnergyCDF->InsertValues(0.06097937, 0.072530*keV);
+	ME_EnergyCDF->InsertValues(0.06366061, 0.075840*keV);
+	ME_EnergyCDF->InsertValues(0.06645203, 0.079301*keV);
+	ME_EnergyCDF->InsertValues(0.06935762, 0.082920*keV);
+	ME_EnergyCDF->InsertValues(0.07238136, 0.086704*keV);
+	ME_EnergyCDF->InsertValues(0.07552727, 0.090661*keV);
+	ME_EnergyCDF->InsertValues(0.07879953, 0.094798*keV);
+	ME_EnergyCDF->InsertValues(0.08220263, 0.099124*keV);
+	ME_EnergyCDF->InsertValues(0.08574139, 0.103648*keV);
+	ME_EnergyCDF->InsertValues(0.08942094, 0.108378*keV);
+	ME_EnergyCDF->InsertValues(0.09324628, 0.113324*keV);
+	ME_EnergyCDF->InsertValues(0.09722213, 0.118496*keV);
+	ME_EnergyCDF->InsertValues(0.10135264, 0.123903*keV);
+	ME_EnergyCDF->InsertValues(0.10564178, 0.129558*keV);
+	ME_EnergyCDF->InsertValues(0.11009377, 0.135470*keV);
+	ME_EnergyCDF->InsertValues(0.11471329, 0.141652*keV);
+	ME_EnergyCDF->InsertValues(0.11950563, 0.148117*keV);
+	ME_EnergyCDF->InsertValues(0.12447611, 0.154876*keV);
+	ME_EnergyCDF->InsertValues(0.12962982, 0.161944*keV);
+	ME_EnergyCDF->InsertValues(0.13497159, 0.169334*keV);
+	ME_EnergyCDF->InsertValues(0.14050608, 0.177062*keV);
+	ME_EnergyCDF->InsertValues(0.14623792, 0.185142*keV);
+	ME_EnergyCDF->InsertValues(0.15217172, 0.193591*keV);
+	ME_EnergyCDF->InsertValues(0.15831202, 0.202426*keV);
+	ME_EnergyCDF->InsertValues(0.16466328, 0.211664*keV);
+	ME_EnergyCDF->InsertValues(0.17122985, 0.221323*keV);
+	ME_EnergyCDF->InsertValues(0.17801596, 0.231424*keV);
+	ME_EnergyCDF->InsertValues(0.18502572, 0.241985*keV);
+	ME_EnergyCDF->InsertValues(0.19226304, 0.253028*keV);
+	ME_EnergyCDF->InsertValues(0.19973168, 0.264575*keV);
+	ME_EnergyCDF->InsertValues(0.20743520, 0.276649*keV);
+	ME_EnergyCDF->InsertValues(0.21537692, 0.289274*keV);
+	ME_EnergyCDF->InsertValues(0.22355994, 0.302476*keV);
+	ME_EnergyCDF->InsertValues(0.23198698, 0.316279*keV);
+	ME_EnergyCDF->InsertValues(0.24066028, 0.330713*keV);
+	ME_EnergyCDF->InsertValues(0.24958172, 0.345805*keV);
+	ME_EnergyCDF->InsertValues(0.25875308, 0.361586*keV);
+	ME_EnergyCDF->InsertValues(0.26817598, 0.378087*keV);
+	ME_EnergyCDF->InsertValues(0.27785134, 0.395342*keV);
+	ME_EnergyCDF->InsertValues(0.28777935, 0.413383*keV);
+	ME_EnergyCDF->InsertValues(0.29795968, 0.432248*keV);
+	ME_EnergyCDF->InsertValues(0.30839155, 0.451974*keV);
+	ME_EnergyCDF->InsertValues(0.31907358, 0.472600*keV);
+	ME_EnergyCDF->InsertValues(0.33000379, 0.494168*keV);
+	ME_EnergyCDF->InsertValues(0.34117963, 0.516720*keV);
+	ME_EnergyCDF->InsertValues(0.35259778, 0.540300*keV);
+	ME_EnergyCDF->InsertValues(0.36425393, 0.564957*keV);
+	ME_EnergyCDF->InsertValues(0.37614291, 0.590740*keV);
+	ME_EnergyCDF->InsertValues(0.38825868, 0.617698*keV);
+	ME_EnergyCDF->InsertValues(0.40059432, 0.645887*keV);
+	ME_EnergyCDF->InsertValues(0.41314192, 0.675363*keV);
+	ME_EnergyCDF->InsertValues(0.42589247, 0.706184*keV);
+	ME_EnergyCDF->InsertValues(0.43883567, 0.738411*keV);
+	ME_EnergyCDF->InsertValues(0.45196021, 0.772109*keV);
+	ME_EnergyCDF->InsertValues(0.46525399, 0.807344*keV);
+	ME_EnergyCDF->InsertValues(0.47870361, 0.844188*keV);
+	ME_EnergyCDF->InsertValues(0.49229416, 0.882713*keV);
+	ME_EnergyCDF->InsertValues(0.50600968, 0.922996*keV);
+	ME_EnergyCDF->InsertValues(0.51983386, 0.965118*keV);
+	ME_EnergyCDF->InsertValues(0.53374905, 1.009162*keV);
+	ME_EnergyCDF->InsertValues(0.54773619, 1.055216*keV);
+	ME_EnergyCDF->InsertValues(0.56177564, 1.103371*keV);
+	ME_EnergyCDF->InsertValues(0.57584753, 1.153724*keV);
+	ME_EnergyCDF->InsertValues(0.58993091, 1.206375*keV);
+	ME_EnergyCDF->InsertValues(0.60400437, 1.261429*keV);
+	ME_EnergyCDF->InsertValues(0.61804588, 1.318995*keV);
+	ME_EnergyCDF->InsertValues(0.63203336, 1.379188*keV);
+	ME_EnergyCDF->InsertValues(0.64594469, 1.442128*keV);
+	ME_EnergyCDF->InsertValues(0.65975708, 1.507941*keV);
+	ME_EnergyCDF->InsertValues(0.67344979, 1.576757*keV);
+	ME_EnergyCDF->InsertValues(0.68700005, 1.648713*keV);
+	ME_EnergyCDF->InsertValues(0.70038591, 1.723953*keV);
+	ME_EnergyCDF->InsertValues(0.71358665, 1.802627*keV);
+	ME_EnergyCDF->InsertValues(0.72658167, 1.884891*keV);
+	ME_EnergyCDF->InsertValues(0.73935183, 1.970909*keV);
+	ME_EnergyCDF->InsertValues(0.75187744, 2.060853*keV);
+	ME_EnergyCDF->InsertValues(0.76414036, 2.154902*keV);
+	ME_EnergyCDF->InsertValues(0.77612344, 2.253242*keV);
+	ME_EnergyCDF->InsertValues(0.78781066, 2.356070*keV);
+	ME_EnergyCDF->InsertValues(0.79918820, 2.463591*keV);
+	ME_EnergyCDF->InsertValues(0.81024193, 2.576019*keV);
+	ME_EnergyCDF->InsertValues(0.82095972, 2.693577*keV);
+	ME_EnergyCDF->InsertValues(0.83133105, 2.816500*keV);
+	ME_EnergyCDF->InsertValues(0.84134714, 2.945033*keV);
+	ME_EnergyCDF->InsertValues(0.85100103, 3.079432*keV);
+	ME_EnergyCDF->InsertValues(0.86028639, 3.219964*keV);
+	ME_EnergyCDF->InsertValues(0.86919905, 3.366909*keV);
+	ME_EnergyCDF->InsertValues(0.87773647, 3.520560*keV);
+	ME_EnergyCDF->InsertValues(0.88589764, 3.681223*keV);
+	ME_EnergyCDF->InsertValues(0.89368315, 3.849218*keV);
+	ME_EnergyCDF->InsertValues(0.90109550, 4.024880*keV);
+	ME_EnergyCDF->InsertValues(0.90813767, 4.208558*keV);
+	ME_EnergyCDF->InsertValues(0.91481438, 4.400619*keV);
+	ME_EnergyCDF->InsertValues(0.92113158, 4.601444*keV);
+	ME_EnergyCDF->InsertValues(0.92709638, 4.811434*keV);
+	ME_EnergyCDF->InsertValues(0.93271726, 5.031007*keV);
+	ME_EnergyCDF->InsertValues(0.93800312, 5.260600*keV);
+	ME_EnergyCDF->InsertValues(0.94296384, 5.500671*keV);
+	ME_EnergyCDF->InsertValues(0.94761009, 5.751698*keV);
+	ME_EnergyCDF->InsertValues(0.95195309, 6.014181*keV);
+	ME_EnergyCDF->InsertValues(0.95600460, 6.288642*keV);
+	ME_EnergyCDF->InsertValues(0.95977681, 6.575628*keV);
+	ME_EnergyCDF->InsertValues(0.96328216, 6.875712*keV);
+	ME_EnergyCDF->InsertValues(0.96653323, 7.189489*keV);
+	ME_EnergyCDF->InsertValues(0.96954269, 7.517587*keV);
+	ME_EnergyCDF->InsertValues(0.97232323, 7.860657*keV);
+	ME_EnergyCDF->InsertValues(0.97488747, 8.219383*keV);
+	ME_EnergyCDF->InsertValues(0.97724784, 8.594480*keV);
+	ME_EnergyCDF->InsertValues(0.97941664, 8.986695*keV);
+	ME_EnergyCDF->InsertValues(0.98140582, 9.396809*keV);
+	ME_EnergyCDF->InsertValues(0.98322704, 9.825639*keV);
+	ME_EnergyCDF->InsertValues(0.98489152, 10.274038*keV);
+	ME_EnergyCDF->InsertValues(0.98641008, 10.742901*keV);
+	ME_EnergyCDF->InsertValues(0.98779324, 11.233160*keV);
+	ME_EnergyCDF->InsertValues(0.98905096, 11.745793*keV);
+	ME_EnergyCDF->InsertValues(0.99019272, 12.281820*keV);
+	ME_EnergyCDF->InsertValues(0.99122755, 12.842310*keV);
+	ME_EnergyCDF->InsertValues(0.99216396, 13.428377*keV);
+	ME_EnergyCDF->InsertValues(0.99300994, 14.041190*keV);
+	ME_EnergyCDF->InsertValues(0.99377307, 14.681969*keV);
+	ME_EnergyCDF->InsertValues(0.99446044, 15.351991*keV);
+	ME_EnergyCDF->InsertValues(0.99507866, 16.052589*keV);
+	ME_EnergyCDF->InsertValues(0.99563387, 16.785160*keV);
+	ME_EnergyCDF->InsertValues(0.99613179, 17.551162*keV);
+	ME_EnergyCDF->InsertValues(0.99657768, 18.352121*keV);
+	ME_EnergyCDF->InsertValues(0.99697642, 19.189633*keV);
+	ME_EnergyCDF->InsertValues(0.99733254, 20.065365*keV);
+	ME_EnergyCDF->InsertValues(0.99765017, 20.981061*keV);
+	ME_EnergyCDF->InsertValues(0.99793311, 21.938546*keV);
+	ME_EnergyCDF->InsertValues(0.99818482, 22.939727*keV);
+	ME_EnergyCDF->InsertValues(0.99840848, 23.986596*keV);
+	ME_EnergyCDF->InsertValues(0.99860694, 25.081241*keV);
+	ME_EnergyCDF->InsertValues(0.99878285, 26.225840*keV);
+	ME_EnergyCDF->InsertValues(0.99893860, 27.422674*keV);
+	ME_EnergyCDF->InsertValues(0.99907631, 28.674126*keV);
+	ME_EnergyCDF->InsertValues(0.99919796, 29.982690*keV);
+	ME_EnergyCDF->InsertValues(0.99930529, 31.350970*keV);
+	ME_EnergyCDF->InsertValues(0.99939988, 32.781693*keV);
+	ME_EnergyCDF->InsertValues(0.99948315, 34.277707*keV);
+	ME_EnergyCDF->InsertValues(0.99955637, 35.841994*keV);
+	ME_EnergyCDF->InsertValues(0.99962070, 37.477667*keV);
+	ME_EnergyCDF->InsertValues(0.99967715, 39.187986*keV);
+	ME_EnergyCDF->InsertValues(0.99972664, 40.976356*keV);
+	ME_EnergyCDF->InsertValues(0.99976997, 42.846340*keV);
+	ME_EnergyCDF->InsertValues(0.99980788, 44.801661*keV);
+	ME_EnergyCDF->InsertValues(0.99984102, 46.846215*keV);
+	ME_EnergyCDF->InsertValues(0.99986994, 48.984074*keV);
+	ME_EnergyCDF->InsertValues(0.99989516, 51.219495*keV);
+	ME_EnergyCDF->InsertValues(0.99991714, 53.556932*keV);
+	ME_EnergyCDF->InsertValues(0.99993628, 56.001038*keV);
+	ME_EnergyCDF->InsertValues(0.99995291, 58.556683*keV);
+	ME_EnergyCDF->InsertValues(0.99996737, 61.228957*keV);
+	ME_EnergyCDF->InsertValues(0.99997991, 64.023182*keV);
+	ME_EnergyCDF->InsertValues(0.99999079, 66.944923*keV);
+	ME_EnergyCDF->InsertValues(1.00000000, 70.000000*keV);
+
+
 }
 

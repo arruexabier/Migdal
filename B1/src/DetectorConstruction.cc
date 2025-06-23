@@ -34,7 +34,7 @@ void DetectorConstruction::DefineMaterials()
 	
 	//------------------------XENON---------------
 	// Pressure and temperature conditions
-	G4double pressure = 10.0 * bar;         // 10 bar
+	G4double pressure = 1.0 * bar;         // 10 bar
 	G4double temperature = 293.15 * kelvin; // Room temperature (20°C)
 
 	// Molar mass of Xenon
@@ -118,7 +118,7 @@ void DetectorConstruction::DefineMaterials()
 	
 	
 	
-	detMaterial=xenonGas;
+	detMaterial=argonGas;
 	
 	
 	

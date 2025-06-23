@@ -2,6 +2,8 @@
 #include "G4Run.hh"
 #include <H5Cpp.h>
 #include <vector>
+#include "EventAction.hh"
+#include "G4RunManager.hh"
 
 namespace B1
 {
@@ -41,6 +43,24 @@ void RunAction::EndOfRunAction(const G4Run*) {
         dataspace = nullptr;
         file = nullptr;
     }
+    
+    
+    //AVERGAE MIGDAL PROB
+    
+    const EventAction* eventAction =
+        static_cast<const EventAction*>(G4RunManager::GetRunManager()->GetUserEventAction());
+
+    G4double totalProb = eventAction->GetTotalProb();
+    G4int totalEvents = eventAction->GetEventCount();
+
+    G4double avg = (totalEvents > 0) ? totalProb / totalEvents : 0.;
+
+    G4cout << "=== Average Migdal Event Probability ===" << G4endl;
+    G4cout << " Total Events: " << totalEvents << G4endl;
+    G4cout << " Total Probability: " << totalProb << G4endl;
+    G4cout << " Average Probability: " << avg << G4endl;
+    
+    
 }
 
 void RunAction::WriteStepData(G4int eventID, G4ThreeVector position, G4double energy) {

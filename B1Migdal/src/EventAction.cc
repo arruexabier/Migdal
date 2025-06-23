@@ -7,6 +7,7 @@
 #include "G4Event.hh"
 #include "G4RunManager.hh"
 #include <fstream> // For file handling
+#include "PrimaryGeneratorAction.hh"
 
 namespace B1
 {
@@ -50,6 +51,14 @@ void EventAction::BeginOfEventAction(const G4Event* event)
 
 void EventAction::EndOfEventAction(const G4Event* event)
 {
+
+	auto genAction = static_cast<const PrimaryGeneratorAction*>(G4RunManager::GetRunManager()->GetUserPrimaryGeneratorAction());
+
+	G4double prob = genAction->GetLastProb();
+
+        AddProb(prob);
+	
+	
 	//PRINT EVENT ID TO KNOW PROGESS
 	G4int eventID = event->GetEventID();
 	if (eventID % 10000 == 0) {

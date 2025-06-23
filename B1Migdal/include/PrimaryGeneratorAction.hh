@@ -10,6 +10,7 @@
 #include "G4PhysicsOrderedFreeVector.hh"
 #include "G4RandomDirection.hh"
 
+
 class G4ParticleGun;
 class G4Event;
 class G4ParticleDefinition;
@@ -30,14 +31,18 @@ class PrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
     // method to access particle gun
     const G4ParticleGun* GetParticleGun() const { return fParticleGun; }
 
+    G4double GetLastProb() const { return prob; }
+
   private:
     G4ParticleGun* fParticleGun = nullptr;  // pointer a to G4 gun class
     
     void defineXenon();
+    void defineArgon();
     
     G4double MigdalEnergy,En,m_n,m_nucleus,m_e,u,binding_energy,K_alpha,K_beta,kAlphaProb;
-    G4double E_R;
+    G4double E_R,fluor_yield,prob,migdal_branch;
     G4int Z,A;
+    G4bool usexenon;
     
     G4PhysicsOrderedFreeVector* ME_EnergyCDF;
 };

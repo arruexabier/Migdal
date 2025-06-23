@@ -3808,3 +3808,497 @@ events:
         
       exitCode: 2
 ...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-wE7jZy"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-wE7jZy"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-wE7jZy'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_3d97a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_3d97a.dir/build.make CMakeFiles/cmTC_3d97a.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-wE7jZy'
+        Building CXX object CMakeFiles/cmTC_3d97a.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_3d97a.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_3d97a.dir/build.make:78: CMakeFiles/cmTC_3d97a.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-wE7jZy'
+        gmake: *** [Makefile:127: cmTC_3d97a/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-vycQz8"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-vycQz8"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-vycQz8'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_71b81/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_71b81.dir/build.make CMakeFiles/cmTC_71b81.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-vycQz8'
+        Building CXX object CMakeFiles/cmTC_71b81.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_71b81.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_71b81.dir/build.make:78: CMakeFiles/cmTC_71b81.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-vycQz8'
+        gmake: *** [Makefile:127: cmTC_71b81/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-PTtG7d"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-PTtG7d"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-PTtG7d'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d1017/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d1017.dir/build.make CMakeFiles/cmTC_d1017.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-PTtG7d'
+        Building CXX object CMakeFiles/cmTC_d1017.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_d1017.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_d1017.dir/build.make:78: CMakeFiles/cmTC_d1017.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-PTtG7d'
+        gmake: *** [Makefile:127: cmTC_d1017/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-GFAEWV"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-GFAEWV"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-GFAEWV'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b6018/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b6018.dir/build.make CMakeFiles/cmTC_b6018.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-GFAEWV'
+        Building CXX object CMakeFiles/cmTC_b6018.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_b6018.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_b6018.dir/build.make:78: CMakeFiles/cmTC_b6018.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-GFAEWV'
+        gmake: *** [Makefile:127: cmTC_b6018/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-MosOav"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-MosOav"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-MosOav'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_de03a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_de03a.dir/build.make CMakeFiles/cmTC_de03a.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-MosOav'
+        Building CXX object CMakeFiles/cmTC_de03a.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_de03a.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_de03a.dir/build.make:78: CMakeFiles/cmTC_de03a.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-MosOav'
+        gmake: *** [Makefile:127: cmTC_de03a/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-JLlUg2"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-JLlUg2"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-JLlUg2'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_c9d1a/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_c9d1a.dir/build.make CMakeFiles/cmTC_c9d1a.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-JLlUg2'
+        Building CXX object CMakeFiles/cmTC_c9d1a.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_c9d1a.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_c9d1a.dir/build.make:78: CMakeFiles/cmTC_c9d1a.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-JLlUg2'
+        gmake: *** [Makefile:127: cmTC_c9d1a/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-6ms7Zh"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-6ms7Zh"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-6ms7Zh'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_ecfc8/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_ecfc8.dir/build.make CMakeFiles/cmTC_ecfc8.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-6ms7Zh'
+        Building CXX object CMakeFiles/cmTC_ecfc8.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_ecfc8.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_ecfc8.dir/build.make:78: CMakeFiles/cmTC_ecfc8.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-6ms7Zh'
+        gmake: *** [Makefile:127: cmTC_ecfc8/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-bXPAtp"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-bXPAtp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-bXPAtp'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_6c37f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_6c37f.dir/build.make CMakeFiles/cmTC_6c37f.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-bXPAtp'
+        Building CXX object CMakeFiles/cmTC_6c37f.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_6c37f.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_6c37f.dir/build.make:78: CMakeFiles/cmTC_6c37f.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-bXPAtp'
+        gmake: *** [Makefile:127: cmTC_6c37f/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-M74toY"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-M74toY"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-M74toY'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_b4483/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_b4483.dir/build.make CMakeFiles/cmTC_b4483.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-M74toY'
+        Building CXX object CMakeFiles/cmTC_b4483.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_b4483.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_b4483.dir/build.make:78: CMakeFiles/cmTC_b4483.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-M74toY'
+        gmake: *** [Makefile:127: cmTC_b4483/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-ne3yEj"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-ne3yEj"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-ne3yEj'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_f8133/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_f8133.dir/build.make CMakeFiles/cmTC_f8133.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-ne3yEj'
+        Building CXX object CMakeFiles/cmTC_f8133.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_f8133.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_f8133.dir/build.make:78: CMakeFiles/cmTC_f8133.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-ne3yEj'
+        gmake: *** [Makefile:127: cmTC_f8133/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-eF30e6"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-eF30e6"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-eF30e6'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_5af1b/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_5af1b.dir/build.make CMakeFiles/cmTC_5af1b.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-eF30e6'
+        Building CXX object CMakeFiles/cmTC_5af1b.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_5af1b.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_5af1b.dir/build.make:78: CMakeFiles/cmTC_5af1b.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-eF30e6'
+        gmake: *** [Makefile:127: cmTC_5af1b/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-qMP6JG"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-qMP6JG"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-qMP6JG'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_d184f/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_d184f.dir/build.make CMakeFiles/cmTC_d184f.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-qMP6JG'
+        Building CXX object CMakeFiles/cmTC_d184f.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_d184f.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_d184f.dir/build.make:78: CMakeFiles/cmTC_d184f.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-qMP6JG'
+        gmake: *** [Makefile:127: cmTC_d184f/fast] Error 2
+        
+      exitCode: 2
+...
+
+---
+events:
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:284 (try_compile)"
+      - "/usr/share/cmake-3.28/Modules/FindHDF5.cmake:614 (_HDF5_test_regular_compiler_CXX)"
+      - "CMakeLists.txt:8 (find_package)"
+    directories:
+      source: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-olALWQ"
+      binary: "/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-olALWQ"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: ""
+      CMAKE_CXX_FLAGS_DEBUG: "-g"
+      CMAKE_EXE_LINKER_FLAGS: ""
+      CMAKE_MODULE_PATH: ""
+    buildResult:
+      variable: "HDF5_CXX_COMPILER_NO_INTERROGATE"
+      cached: true
+      stdout: |
+        Change Dir: '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-olALWQ'
+        
+        Run Build Command(s): /usr/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_a0b2d/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_a0b2d.dir/build.make CMakeFiles/cmTC_a0b2d.dir/build
+        gmake[1]: Entering directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-olALWQ'
+        Building CXX object CMakeFiles/cmTC_a0b2d.dir/cmake_hdf5_test.cxx.o
+        /usr/bin/c++    -o CMakeFiles/cmTC_a0b2d.dir/cmake_hdf5_test.cxx.o -c /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx
+        /home/arruexabier/tfg/B1Migdal/build/CMakeFiles/hdf5/cmake_hdf5_test.cxx:1:10: fatal error: H5Cpp.h: No such file or directory
+            1 | #include <H5Cpp.h>
+              |          ^~~~~~~~~
+        compilation terminated.
+        gmake[1]: *** [CMakeFiles/cmTC_a0b2d.dir/build.make:78: CMakeFiles/cmTC_a0b2d.dir/cmake_hdf5_test.cxx.o] Error 1
+        gmake[1]: Leaving directory '/home/arruexabier/tfg/B1Migdal/build/CMakeFiles/CMakeScratch/TryCompile-olALWQ'
+        gmake: *** [Makefile:127: cmTC_a0b2d/fast] Error 2
+        
+      exitCode: 2
+...
